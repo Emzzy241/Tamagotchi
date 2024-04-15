@@ -27,5 +27,12 @@ namespace TamagotchiController
             List<Pet> listOfPetObjects = Pet.GetAllPets();
             return RedirectToAction("Index");
         }
+
+        [HttpGet("/pets/{objId}")]
+        public ActionResult Show(int objId)
+        {
+            Pet foundObj = Pet.Find(objId);
+            return View(foundObj);
+        }
     }
 }
