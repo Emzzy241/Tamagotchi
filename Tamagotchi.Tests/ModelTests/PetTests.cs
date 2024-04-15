@@ -299,6 +299,23 @@ namespace TamagotchiTests.Models
             Assert.AreEqual(expectedObjectId, actualObjectId);
         }
 
+        // Test 17. Testing the Find() method on Tamagotchi object
+        [TestMethod]
+        public void Find_FindsPetObj_Pet()
+        {
+            // Arrange
+            Pet myPet = new Pet("Dyna", 40, 40, 40);
+            Pet myPet2 = new Pet("Alexa", 30, 30, 30);
+            Pet myPet3 = new Pet("Shield", 0, 60, 30);
+            Pet expectedPet = myPet;
+
+            // Act
+            Pet actualPet = Pet.Find(1);
+
+            // Assert
+            Assert.AreEqual(expectedPet, actualPet);
+        }
+
        
 
     }

@@ -40,6 +40,12 @@ namespace Tamagotchi.Models
             _petInstances.Clear();
         }
 
+        // Find() Method
+        public static Pet Find(int petId)
+        {
+            return _petInstances[petId - 1];
+        }
+
         // Methods to Feed, Play, and Put tamagotchi to sleep.
         public void Feed()
         {
