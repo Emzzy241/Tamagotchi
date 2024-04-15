@@ -62,6 +62,15 @@ namespace Tamagotchi.Models
             Attention -= 5;
         }
 
+        public bool IsDead()
+        {
+            if (AmountOfFood <= 0 || Rest <= 0 || Attention <= 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
 
     }
 }

@@ -248,6 +248,7 @@ namespace TamagotchiTests.Models
         public void MakeTimePass_MethodToMakeTimePass_Void()
         {
             // Arrange
+            // The MakeTimePass() method reduces all properties of Pet
             Pet myPet = new Pet("Shield", 30, 30, 30);
             int expectedAmountOfFood = 25;
             int expectedRestValue = 25;
@@ -263,9 +264,23 @@ namespace TamagotchiTests.Models
             Assert.AreEqual(expectedAmountOfFood, actualAmountOfFood);
             Assert.AreEqual(expectedRestValue, actualRestValue);
             Assert.AreEqual(expectedAttention, actualAttention);
-
         }
 
+        // Test 15. Testing the IsDead() method on Tamagotchi Pet
+        [TestMethod]
+        public void IsDead_DeterminesWhetherPetIsDead_Bool()
+        {
+            // Arrange
+            Pet myPet = new Pet("Dyna", 50, 50, 5);
+            bool expectedStatus = true;
+
+            // Act
+            myPet.MakeTimePass(); // MakeTimePass() reduces all property and since attention <= 0. It is true that Pet object is dead
+            bool actualStatus = myPet.IsDead();
+
+            // Assert
+            Assert.AreEqual(expectedStatus, actualStatus);
+        }
 
     }
 }
