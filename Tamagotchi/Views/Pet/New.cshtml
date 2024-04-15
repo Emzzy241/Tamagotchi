@@ -49,6 +49,10 @@
     <form action="/pets" method="post">
         <label for="myPetName">Your Pet's name:</label>
         <input id="myPetName" class="form-control" id="myPetName" name="myPetName" type="text" placeholder="e.g: Shield" required>
+        @*Adding initial values for every new Pet object; This is so our Pet object can be correctly instantiated in our cntroller so we dont end up with an error
+            When I @Model.AmountOfFood, @ModelAttention, @Model.Rest; It gave a runtime error: "RuntimeBinderException: Cannot perform runtime binding on a null reference". 
+            The error was actually true, because everytime we reintsantiate with new, every paramter is considered empty, so even thouygh I gave my prperties initial values it totally snubbed them since it was reinstantiating
+         *@
         <input id="petAmountOfFood" name="petAmountOfFood" type="hidden" value="50">
         <input id="petAttention" name="petAttention" type="hidden" value="50">
         <input id="petRest" name="petRest" type="hidden" value="50">

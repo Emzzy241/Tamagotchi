@@ -37,7 +37,7 @@
     {
          foreach (Pet petObj in Model)
         {
-            <a href="/pets/{id}"><p></p>@petObj.PetName</a>
+            <a href="/pets/@petObj.Id"><p></p>@petObj.PetName</a>
         }
     }
     <p>The List of Tamagotchi Pets is Empty, Create a new pet today.</p>
