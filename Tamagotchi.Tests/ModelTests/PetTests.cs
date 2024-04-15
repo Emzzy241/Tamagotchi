@@ -7,8 +7,15 @@ namespace TamagotchiTests.Models
 {
     
     [TestClass]
-    public class PetTests
+    public class PetTests : IDisposable
     {
+
+        // Implementing Dispose() method thats mandaory wheneever we inherit the IDisposable interface
+        public void Dispose()
+        {
+            Pet.ClearAllPets();
+            // Clearing all Pet objects from list after every test
+        }
         // Test 1. Test for Constructor
         [TestMethod]
         public void PetConstructor_CreatesInstanceOfPet_Pet()
@@ -140,7 +147,7 @@ namespace TamagotchiTests.Models
             Assert.AreEqual(newRestValue, myPet.Rest);
         }
 
-        // Test 10. Testing if more than one Pet objects can be gotten from List
+        // Test 10. Testing the GetAllPets() method
         [TestMethod]
         public void GetAllPets_ReturnsAllInstancesOfPets_Pet()
         {
@@ -154,22 +161,110 @@ namespace TamagotchiTests.Models
             List<Pet> actualListOfPets = Pet.GetAllPets();
 
             // Assert
-            Assert.AreEqual(expectedListOfPets, actualListOfPets);
+            CollectionAssert.AreEqual(expectedListOfPets, actualListOfPets);
         }
 
-        // Test 12. Testing Feed() method of Tamagotchi
-        // [TestMethod]
-        // public void FeedMethod_MethodToFeedPet_Int()
-        // {
-        //     // Arrange
-        //     Pet myPet = new Pet("Alexa", 5, 10, 15);
-        //     int newPetAmountOfFood = 15;
+        // Test 11. Testing the ClearAllPets() method
+        [TestMethod]
+        public void ClearAllPets_RemovesAllInstancesOfPets_Void()
+        {
+            // Arrange
+             Pet myPet = new Pet("Alexa", 5, 10, 15);
+            Pet myPet2 = new Pet("Theresa", 15, 5, 10);
+            Pet myPet3 = new Pet("Rebecca", 40, 20, 30);
+            List<Pet> expectedListOfPets = new List<Pet>(){};
+            
+            // Act
+            Pet.ClearAllPets();
+            List<Pet> actualListOfPets = Pet.GetAllPets();
 
-        //     // Act
-        //     int 
-        // } 
+            // Assert
+            CollectionAssert.AreEqual(expectedListOfPets, actualListOfPets);
+        }
 
+        // Test 12. Testing Feed() method on Tamagotchi Pet
+        [TestMethod]
+        public void Feed_MethodToFeedPet_Void()
+        {
+            // Arrange
+            Pet myPet = new Pet("Alexa", 5, 10, 15);
+            int expectedAmountOfFood = 10;
 
+            // Act
+            myPet.Feed();
+            int actualAmountOfFood = myPet.AmountOfFood;
+
+            // Assert
+            Assert.AreEqual(expectedAmountOfFood, actualAmountOfFood);
+        } 
+        
+        // Test 13. Testing Play() method on Tamagotchi Pet
+        [TestMethod]
+        public void Play_MethodToPlayWithPet_Void()
+        {
+            // Arrange
+            Pet myPet = new Pet("Shield", 10, 10, 10);
+            int expectedAmountOfFood = 5;
+            int expectedRestValue = 5;
+            int expectedAttention = 15;
+
+            // Act
+            myPet.Play();
+            int actualAmountOfFood = myPet.AmountOfFood;
+            int actualRestValue = myPet.Rest;
+            int actualAttention = myPet.Attention;
+
+            // Assert
+            Assert.AreEqual(expectedAmountOfFood, actualAmountOfFood);
+            Assert.AreEqual(expectedRestValue, actualRestValue);
+            Assert.AreEqual(expectedAttention, actualAttention);
+        }
+
+        // Test 14. Testing Sleep() method on Tamagotchi Pet
+        [TestMethod]
+        public void Sleep_MethodToMakePetSleep_Void()
+        {
+            // Arrange
+            // When Pet gets food, food increases when it gets rest food also increases since digestion takes place and its known that humans digestive systems works twice as fast when we sleep
+            Pet myPet = new Pet("Shield", 30, 30, 30);
+            int expectedAmountOfFood = 35;
+            int expectedRestValue = 35;
+            int expectedAttention = 25;
+
+            // Act
+            myPet.Sleep();
+            int actualAmountOfFood = myPet.AmountOfFood;
+            int actualRestValue = myPet.Rest;
+            int actualAttention = myPet.Attention;
+
+            // Assert
+           Assert.AreEqual(expectedAmountOfFood, actualAmountOfFood);
+            Assert.AreEqual(expectedRestValue, actualRestValue);
+            Assert.AreEqual(expectedAttention, actualAttention);
+        }
+
+        // Test 15. Testing the MakeTimePass() method on Tamagotchi Pet
+        [TestMethod]
+        public void MakeTimePass_MethodToMakeTimePass_Void()
+        {
+            // Arrange
+            Pet myPet = new Pet("Shield", 30, 30, 30);
+            int expectedAmountOfFood = 25;
+            int expectedRestValue = 25;
+            int expectedAttention = 25;
+
+            // Act
+            myPet.MakeTimePass();
+            int actualAmountOfFood = myPet.AmountOfFood;
+            int actualRestValue = myPet.Rest;
+            int actualAttention = myPet.Attention;
+            
+            // Assert
+            Assert.AreEqual(expectedAmountOfFood, actualAmountOfFood);
+            Assert.AreEqual(expectedRestValue, actualRestValue);
+            Assert.AreEqual(expectedAttention, actualAttention);
+
+        }
 
 
     }
