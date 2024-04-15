@@ -282,5 +282,7 @@ namespace TamagotchiTests.Models
             Assert.AreEqual(expectedStatus, actualStatus);
         }
 
+       
+
     }
 }

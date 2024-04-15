@@ -7,9 +7,9 @@ namespace Tamagotchi.Models
     {
         // Attention, AmountOfFood, Rest are all 100 i.e its maximum value is 100.
         public string PetName { get; set; }
-        public int AmountOfFood { get; set; }
-        public int Attention { get; set; }
-        public int Rest { get; set; }
+        public int AmountOfFood { get; set; } = 30;
+        public int Attention { get; set; } = 30;
+        public int Rest { get; set; } = 30;
 
         private static List<Pet> _petInstances = new List<Pet>(){};
         
