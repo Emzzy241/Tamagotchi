@@ -10,6 +10,9 @@ namespace Tamagotchi.Models
         public int AmountOfFood { get; set; } = 30;
         public int Attention { get; set; } = 30;
         public int Rest { get; set; } = 30;
+        public int Id { get; }
+        
+        
 
         private static List<Pet> _petInstances = new List<Pet>(){};
         
@@ -20,6 +23,8 @@ namespace Tamagotchi.Models
             Attention = petAttention;
             Rest = petRest;
             _petInstances.Add(this);
+            // After its been added to the list, thats when we count and get our id value
+            Id = _petInstances.Count;
         }
 
         // Method to get all pet objects

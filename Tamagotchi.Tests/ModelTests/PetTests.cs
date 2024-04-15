@@ -282,6 +282,23 @@ namespace TamagotchiTests.Models
             Assert.AreEqual(expectedStatus, actualStatus);
         }
 
+        // Test 16. Testing the Id property on Tamagotchi object
+        [TestMethod]
+        public void Id_ReturnsIdOfPetObjects_Int()
+        {
+            // Arrange
+            Pet myPet = new Pet("Dyna", 40, 40, 40);
+            Pet myPet2 = new Pet("Alexa", 30, 30, 30);
+            Pet myPet3 = new Pet("Shield", 0, 60, 30);
+            int expectedObjectId = 1;
+
+            // Act
+            int actualObjectId = myPet.Id;
+
+            // Assert
+            Assert.AreEqual(expectedObjectId, actualObjectId);
+        }
+
        
 
     }
