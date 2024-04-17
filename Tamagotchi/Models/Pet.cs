@@ -5,11 +5,11 @@ namespace Tamagotchi.Models
 {
     public class Pet
     {
-        // Attention, AmountOfFood, Rest are all 100 i.e its maximum value is 100.
+        // Properties of a Pewt object
         public string PetName { get; set; }
-        public int AmountOfFood { get; set; } = 30;
-        public int Attention { get; set; } = 30;
-        public int Rest { get; set; } = 30;
+        public int AmountOfFood { get; set; }
+        public int Attention { get; set; }
+        public int Rest { get; set; }
         public int Id { get; }
         
         
@@ -73,14 +73,19 @@ namespace Tamagotchi.Models
             Attention -= 5;
         }
 
-        public bool IsDead()
+        public bool IsAlive()
         {
-            if (AmountOfFood <= 0 || Rest <= 0 || Attention <= 0)
+            if (AmountOfFood > 0 && Rest > 0 && Attention > 0)
             {
                 return true;
             }
+            else if (AmountOfFood <= 0 || Rest <= 0 || Attention <= 0)
+            {
+                return false;
+            }
             return false;
         }
+
 
 
     }

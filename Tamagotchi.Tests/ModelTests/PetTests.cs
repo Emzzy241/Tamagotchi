@@ -266,9 +266,9 @@ namespace TamagotchiTests.Models
             Assert.AreEqual(expectedAttention, actualAttention);
         }
 
-        // Test 15. Testing the IsDead() method on Tamagotchi Pet
+        // Test 15. Testing the IsAlive() method on Tamagotchi Pet
         [TestMethod]
-        public void IsDead_DeterminesWhetherPetIsDead_Bool()
+        public void IsAlive_DeterminesWhetherPetIsAlive_Bool()
         {
             // Arrange
             Pet myPet = new Pet("Dyna", 50, 50, 5);
@@ -276,7 +276,7 @@ namespace TamagotchiTests.Models
 
             // Act
             myPet.MakeTimePass(); // MakeTimePass() reduces all property and since attention <= 0. It is true that Pet object is dead
-            bool actualStatus = myPet.IsDead();
+            bool actualStatus = myPet.IsAlive();
 
             // Assert
             Assert.AreEqual(expectedStatus, actualStatus);
