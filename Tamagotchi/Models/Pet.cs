@@ -49,14 +49,20 @@ namespace Tamagotchi.Models
         // Methods to Feed, Play, and Put tamagotchi to sleep.
         public void Feed()
         {
-            AmountOfFood += 5;
+            if (AmountOfFood > 0)
+            {
+                AmountOfFood += 5;
+            }
         }
         
         public void Play()
         {
-            AmountOfFood -= 5;
-            Rest -= 5;
-            Attention += 5;
+            if (AmountOfFood > 0 && Rest > 0 && Attention > 0)
+            {
+                AmountOfFood -= 5;
+                Rest -= 5;
+                Attention += 5;
+            }
         }
 
         public void Sleep()

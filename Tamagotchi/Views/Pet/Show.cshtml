@@ -40,19 +40,20 @@
             
         </marquee>
 
-        <h3>Here is the current Status of <span class="cool-color">@Model.PetName</span>, Alive: @Model.IsAlive()</h3>
+        <h3>Here is the current Status of <span class="cool-color">@Model.PetName</span>, Alive: <span id="petStatus">@Model.IsAlive()</span></h3>
         
         
         <p>Amount of Food: <span class="cool-color" id="amountOfFood">@Model.AmountOfFood</span></p>
-        <p>Attention: <span class="cool-color">@Model.Attention</span></p>
-        <p>Rest: <span class="cool-color">@Model.Rest</span></p>
+        <p>Attention: <span class="cool-color" id="amountOfAttention">@Model.Attention</span></p>
+        <p>Rest: <span class="cool-color" id="amountOfRest">@Model.Rest</span></p>
 
         <p>Here are various Actions you can perform on @Model.PetName</p>
 
     <a href='#' class="btn btn-primary btn-sm" id="feedBtn">Feed</a>
-    <a href='#' class="btn btn-primary btn-sm">Play</a>
+    <a href='#' class="btn btn-primary btn-sm" id="playBtn">Play</a>
     <a href='#' class="btn btn-primary btn-sm">Sleep</a>
     <a href='#' class="btn btn-primary btn-sm">MakeTimePass</a>
+    <a href='#' class="btn btn-primary btn-sm">Pet Status</a>
         <br>
         <br>
 
@@ -87,7 +88,39 @@
             });
         });
 
-        
+        $("#playBtn").click(()=>{
+          $.ajax({
+                url: '@Url.Action("Play", "Pet")',
+                type: 'POST',
+                data: { objId: '@Model.Id' }, 
+                success: function (result) {
+                    // Handle success
+                    // Update the AmountOfFood value in the DOM
+                    let currentAmountOfFood = parseInt($("#amountOfFood").text());
+                    let currentRest = parseInt($("#amountOfRest").text());
+                    let currentAttention = parseInt($("#amountOfAttention").text());
+                    
+                    let newAmountOfFood = currentAmountOfFood - 5; // Increase by 5
+                    let newAttention = currentAttention + 5; // Increase by 5
+                    let newRest = currentRest - 5; // Increase by 5
+
+                    $("#amountOfFood").text(newAmountOfFood);
+                    $("#amountOfRest").text(newRest);
+                    $("#amountOfAttention").text(newAttention);
+
+                    alert(result.message); // Display a success message or update the UI
+                },
+                error: function (error) {
+                    // Handle error
+                    alert(error);
+                    alert('Error feeding the pet.');
+                }
+            });
+        });
+
+
+
+
 
          
       });
