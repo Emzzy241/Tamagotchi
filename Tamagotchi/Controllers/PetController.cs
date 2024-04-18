@@ -119,5 +119,34 @@ namespace TamagotchiController
             }
         }
 
+        [HttpGet("/pets/delete")]
+        public ActionResult Delete()
+        {
+            return View();
+        }
+
+        // Using HttpPost to implement HttpDelete() that is not available in hTML5
+        [HttpPost("pets/deleteall")]
+        public ActionResult DeleteAll()
+        {
+            Pet.ClearAllPets();
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpGet("/pets/{myPetId}/deletepet")]
+        public ActionResult DeletePet(int myPetId)
+        {
+            return View();
+        }
+
+        // Using HttpPost to implement HttpDelete() that is not available in hTML5
+        [HttpPost("/pets/{myPetId}/deletemypet")]
+        public ActionResult DeleteMyPet(int myPetId)
+        {
+            Pet.RemovePet(myPetId);
+            return RedirectToAction("Index");
+        }
+
     }
 }

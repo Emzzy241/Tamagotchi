@@ -46,6 +46,14 @@ namespace Tamagotchi.Models
             return _petInstances[petId - 1];
         }
 
+        // Remove(); For removing a single Pet from list
+        public static void RemovePet(int petId)
+        {
+            Pet findPet = Pet.Find(petId);
+
+            _petInstances.Remove(findPet);
+        }
+
         // Methods to Feed, Play, and Put tamagotchi to sleep.
         public void Feed()
         {

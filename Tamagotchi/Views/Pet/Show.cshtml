@@ -60,7 +60,13 @@
     <a href='/pets/new' class="btn btn-primary btn-sm">Create A New Tamagotchi Pet</a>
     <br>
     <br>
+    <form action="@Model.Id/deletepet" method="get">
+      <button class="btn btn-danger" type="submit">Delete this tamagotchi pet</button>
+    </form>
+    <br>
     <a href='/pets'>See List of Tamagotchi Pets</a>
+    <br>
+
   </div>
 
   <script>

@@ -11,6 +11,7 @@
 * RESTful routing
 * Razor
 * CSS
+* Javascript(jQuery)
 
 ## Description
 _Tamagotchi a Popular pet of the 90's. Tamagotchis, electronic pets that can be carried around and various buttons can be pressed to feed it, play with it, and put it to sleep.This is a web application where you can create Tamagotchi pets, name it, feed it, and also play with it._

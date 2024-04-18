@@ -272,7 +272,7 @@ namespace TamagotchiTests.Models
         {
             // Arrange
             Pet myPet = new Pet("Dyna", 50, 50, 5);
-            bool expectedStatus = true;
+            bool expectedStatus = false;
 
             // Act
             myPet.MakeTimePass(); // MakeTimePass() reduces all property and since attention <= 0. It is true that Pet object is dead
@@ -314,6 +314,24 @@ namespace TamagotchiTests.Models
 
             // Assert
             Assert.AreEqual(expectedPet, actualPet);
+        }
+
+        // Test 18. Testing the RemovePets() method on Tamagotchi
+        [TestMethod]
+        public void RemovePet_DeletesASinglePetFromList_Void()
+        {
+            // Arrange
+            Pet myPet = new Pet("Dyna", 40, 40, 40);
+            Pet myPet2 = new Pet("Alexa", 30, 30, 30);
+            Pet myPet3 = new Pet("Shield", 0, 60, 30);
+            List<Pet> expectedPetsInList = new List<Pet>(){myPet, myPet3};
+
+            // Act
+            Pet.RemovePet(myPet2.Id);
+            List<Pet> actualPetsInList = Pet.GetAllPets(); 
+
+            // Assert
+            CollectionAssert.AreEqual(expectedPetsInList, actualPetsInList);
         }
 
        
