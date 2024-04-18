@@ -36,11 +36,11 @@
   <div class="container">
    <marquee scrollamount="-5" width="100%" loop="10000">
             <h1 class="cool-color">Tamagotchi</h1>
-            <p>Created by <b>Dynasty</b> | Highest Value of food, rest or attention for all pet is: 100 | Also Note that once Amount of Food, rest or attention = 0, The Pet dies </p>
+            <p>Created by <b>Dynasty</b> | The Initial Values for food, rest or attention for all pet is: 50 | Also Note that once Amount of Food, rest or attention = 0, The Pet dies </p>
             
         </marquee>
 
-        <h3>Here is the current Status of <span class="cool-color">@Model.PetName</span>, Alive: <span id="petStatus">@Model.IsAlive()</span></h3>
+        <h3>Here is the current Status of <span class="cool-color">@Model.PetName</span></h3>
         
         
         <p>Amount of Food: <span class="cool-color" id="amountOfFood">@Model.AmountOfFood</span></p>
@@ -51,9 +51,9 @@
 
     <a href='#' class="btn btn-primary btn-sm" id="feedBtn">Feed</a>
     <a href='#' class="btn btn-primary btn-sm" id="playBtn">Play</a>
-    <a href='#' class="btn btn-primary btn-sm">Sleep</a>
-    <a href='#' class="btn btn-primary btn-sm">MakeTimePass</a>
-    <a href='#' class="btn btn-primary btn-sm">Pet Status</a>
+    <a href='#' class="btn btn-primary btn-sm" id="sleepBtn">Sleep</a>
+    <a href='#' class="btn btn-primary btn-sm" id="makeTimePass">MakeTimePass</a>
+    <a href='#' class="btn btn-primary btn-sm" id="aliveBtn">Pet Status</a>
         <br>
         <br>
 
@@ -74,7 +74,7 @@
                     // Handle success
                     // Update the AmountOfFood value in the DOM
                     let currentAmountOfFood = parseInt($("#amountOfFood").text());
-                    let newAmountOfFood = currentAmountOfFood + 5; // Increase by 5
+                    let newAmountOfFood = currentAmountOfFood + 5; 
 
                     $("#amountOfFood").text(newAmountOfFood);
 
@@ -95,20 +95,20 @@
                 data: { objId: '@Model.Id' }, 
                 success: function (result) {
                     // Handle success
-                    // Update the AmountOfFood value in the DOM
+                    // Update the Properties value in the DOM
                     let currentAmountOfFood = parseInt($("#amountOfFood").text());
                     let currentRest = parseInt($("#amountOfRest").text());
                     let currentAttention = parseInt($("#amountOfAttention").text());
                     
-                    let newAmountOfFood = currentAmountOfFood - 5; // Increase by 5
-                    let newAttention = currentAttention + 5; // Increase by 5
-                    let newRest = currentRest - 5; // Increase by 5
+                    let newAmountOfFood = currentAmountOfFood - 5; 
+                    let newAttention = currentAttention + 5; 
+                    let newRest = currentRest - 5; 
 
                     $("#amountOfFood").text(newAmountOfFood);
                     $("#amountOfRest").text(newRest);
                     $("#amountOfAttention").text(newAttention);
 
-                    alert(result.message); // Display a success message or update the UI
+                    alert(result.message); 
                 },
                 error: function (error) {
                     // Handle error
@@ -118,6 +118,85 @@
             });
         });
 
+         $("#sleepBtn").click(()=>{
+          $.ajax({
+                url: '@Url.Action("Sleep", "Pet")',
+                type: 'POST',
+                data: { objId: '@Model.Id' }, 
+                success: function (result) {
+                    // Handle success
+                    // Update the Properties value in the DOM
+                    let currentAmountOfFood = parseInt($("#amountOfFood").text());
+                    let currentRest = parseInt($("#amountOfRest").text());
+                    let currentAttention = parseInt($("#amountOfAttention").text());
+                    
+                    let newAmountOfFood = currentAmountOfFood + 5; 
+                    let newAttention = currentAttention - 5; 
+                    let newRest = currentRest + 5; 
+
+                    $("#amountOfFood").text(newAmountOfFood);
+                    $("#amountOfRest").text(newRest);
+                    $("#amountOfAttention").text(newAttention);
+
+                    alert(result.message); 
+                },
+                error: function (error) {
+                    // Handle error
+                    alert(error);
+                    alert('Error feeding the pet.');
+                }
+            });
+        });
+
+         $("#makeTimePass").click(()=>{
+          $.ajax({
+                url: '@Url.Action("MakeTimePass", "Pet")',
+                type: 'POST',
+                data: { objId: '@Model.Id' }, 
+                success: function (result) {
+                    // Handle success
+                    // Update the Properties value in the DOM
+                    let currentAmountOfFood = parseInt($("#amountOfFood").text());
+                    let currentRest = parseInt($("#amountOfRest").text());
+                    let currentAttention = parseInt($("#amountOfAttention").text());
+                    
+                    let newAmountOfFood = currentAmountOfFood - 5; 
+                    let newAttention = currentAttention - 5; 
+                    let newRest = currentRest - 5; 
+
+                    $("#amountOfFood").text(newAmountOfFood);
+                    $("#amountOfRest").text(newRest);
+                    $("#amountOfAttention").text(newAttention);
+
+                    alert(result.message); 
+                },
+                error: function (error) {
+                    // Handle error
+                    alert(error);
+                    alert('Error feeding the pet.');
+                }
+            });
+        });
+
+
+        $("#aliveBtn").click(()=>{
+          $.ajax({
+                url: '@Url.Action("IsAlive", "Pet")',
+                type: 'POST',
+                data: { objId: '@Model.Id' }, 
+                success: function (result) {
+                    // Handle success
+                    // Update the Properties value in the DOM
+                  
+                    alert(result.message); 
+                },
+                error: function (error) {
+                    // Handle error
+                    alert(error);
+                    alert('Error feeding the pet.');
+                }
+            });
+        });
 
 
 

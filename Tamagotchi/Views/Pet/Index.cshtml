@@ -11,6 +11,10 @@
     body {
       background-color: #f8f9fa;
     }
+    ul{
+      text-decoration: none;
+      list-style: none;
+    }
     .container {
       margin-top: 50px;
       text-align: center;
@@ -33,14 +37,23 @@
   <div class="container">
     <h1>The Tamagotchi Web Application</h1>
     <p>A list of Tamagotchi Pets already created: </p>
-    @if(Model.Count > 0)
-    {
-         foreach (Pet petObj in Model)
+    <ul>
+        @if(Model.Count > 0)
         {
-            <a href="/pets/@petObj.Id"><p></p>@petObj.PetName</a>
+            foreach (Pet petObj in Model)
+            {
+                <li><a href="/pets/@petObj.Id"><p></p>@petObj.PetName</a></li>
+            }
         }
-    }
-    <p>The List of Tamagotchi Pets is Empty, Create a new pet today.</p>
+        else
+            {
+              <li>No Tamagotchi Pets have been created</li>
+            }
+    </ul>
+
+    
+    <br>
+    <br>
 
     <a href='/pets/new' class="btn btn-primary btn">Create A Tamagotchi Pet</a>
     <br>

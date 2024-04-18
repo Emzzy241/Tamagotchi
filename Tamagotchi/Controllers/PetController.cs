@@ -72,13 +72,45 @@ namespace TamagotchiController
         }
 
         [HttpPost]
+        public IActionResult Sleep(int objId)
+        {
+            Pet myPet = Pet.Find(objId);
+            if (myPet != null)
+            {
+                myPet.Sleep();
+                return Json(new {message = myPet.PetName + " has slept"});
+
+            }
+            else
+            {
+                return Json(new { message = "Pet not found!"});
+            }
+        }
+
+        [HttpPost]
+        public IActionResult MakeTimePass(int objId)
+        {
+            Pet myPet = Pet.Find(objId);
+            if (myPet != null)
+            {
+                myPet.MakeTimePass();
+                return Json(new {message = "The make time pass button has been clicked"});
+
+            }
+            else
+            {
+                return Json(new { message = "Pet not found!"});
+            }
+        }
+
+        [HttpPost]
         public IActionResult IsAlive(int objId)
         {
             Pet myPet = Pet.Find(objId);
             if (myPet != null)
             {
                 myPet.IsAlive();
-                return Json(new {message = "Alive Status of Pet: " + myPet.IsAlive()});
+                return Json(new {message = "Is "  + myPet.PetName +" alive? " + myPet.IsAlive()});
 
             }
             else
